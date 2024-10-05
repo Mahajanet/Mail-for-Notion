@@ -2,23 +2,29 @@ const { promptOption } = require('./utils/promptUser');
 const { sendMessage } = require('./services/sendMessage');
 const { readMessages } = require('./services/readMessages');
 
-function main() {
+async function main() {
     console.log('Welcome to NotionMail!');
+
+
     console.log('Please select an option:');
     console.log('- send: Send mail to a user.');
     console.log('- read: Check a user\'s mail.');
 
-
-    const option = promptOption('> ');
+    while(true){
+    const option = promptOption('$ ');  
 
     if (option === 'send') {
-        sendMessage();
+        await sendMessage();
     } else if (option === 'read') {
-        readMessages();
-    } else {
+        await readMessages();
+    } else if (option == 'exit'){
+        exit()
+    }
+    else {
         console.log('Invalid option.');
     }
-    }
+}
+}
 
 
 main();

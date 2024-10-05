@@ -3,9 +3,9 @@ const { promptUser } = require('../utils/promptUser');
 
 // Send a message to to add a new entry to existing database 
 async function sendMessage() {
-    const sender = promptUser('Sender: ');
-    const recipient = promptUser('Recipient: ');
-    const message = promptUser('Message: ');
+    const sender = promptUser('Sender: $ ');
+    const recipient = promptUser('Recipient: $ ');
+    const message = promptUser('Message: $ ');
 
     // Add a new entry (page) to the existing Notion database
     try {

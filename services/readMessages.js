@@ -2,7 +2,7 @@ const { notion } = require('../config/notionClient');
 const { promptUser } = require('../utils/promptUser');
 
 async function readMessages() {
-    const user = promptUser('User: ');
+    const user = promptUser('User: $ ');
 
     try {
         const response = await notion.databases.query({
