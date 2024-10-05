@@ -7,12 +7,12 @@ async function sendMessage() {
     const recipient = promptUser('Recipient: $ ');
     const message = promptUser('Message: $ ');
 
-    // Add a new entry (page) to the existing Notion database
+    // Add a new entry to the existing Notion database
     try {
         await notion.pages.create({
             parent: { database_id: process.env.NOTION_PAGE_ID },
             properties: {
-                // 'Title' field for the main name of the entry
+                // 'Title' field for message 
                 'Message': {
                     title: [
                         {
@@ -23,7 +23,7 @@ async function sendMessage() {
                         }
                     ] 
                 },
-                // Use 'rich_text' for Sender
+                // Sender
                 'Sender': {
                     rich_text: [
                         {
@@ -34,7 +34,7 @@ async function sendMessage() {
                         }
                     ]
                 },
-                // Use 'rich_text' for Recipient
+                // Recipient
                 'Recipient': {
                     rich_text: [
                         {
@@ -45,6 +45,7 @@ async function sendMessage() {
                         }
                     ]
                 },
+                //Timestamp
                 'Timestamp': {
                     date: {
                         start: new Date().toISOString()
