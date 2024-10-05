@@ -10,7 +10,8 @@ async function main() {
     console.log('- send: Send mail to a user.');
     console.log('- read: Check a user\'s mail.');
 
-    while(true){
+    let running = true 
+    while(running){
     const option = promptOption('$ ');  
 
     if (option === 'send') {
@@ -18,7 +19,7 @@ async function main() {
     } else if (option === 'read') {
         await readMessages();
     } else if (option == 'exit'){
-        exit()
+        running = false;
     }
     else {
         console.log('Invalid option.');
