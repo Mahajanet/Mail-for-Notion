@@ -29,6 +29,7 @@ Enter 'npm start' to start the program.
 4. Input validation!
 5. Storing messages in a more secure way.
 6. Logging for debugging purposes.
+7. Only show unread messages. 
 
 
 #What were some of the product or technical choices you made and why?
