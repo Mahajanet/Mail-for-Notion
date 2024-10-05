@@ -8,6 +8,7 @@ function main() {
     console.log('- send: Send mail to a user.');
     console.log('- read: Check a user\'s mail.');
 
+
     const option = promptOption('> ');
 
     if (option === 'send') {
@@ -17,6 +18,7 @@ function main() {
     } else {
         console.log('Invalid option.');
     }
-}
+    }
+
 
 main();

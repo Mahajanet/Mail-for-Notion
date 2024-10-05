@@ -1,17 +1,17 @@
 const { notion } = require('../config/notionClient');
 const { promptUser } = require('../utils/promptUser');
 
-// Read messages for a recipient from an existing entry in an existing database
 async function readMessages() {
     const user = promptUser('User: ');
 
-    // Query the Notion database for messages addressed to the user
     try {
         const response = await notion.databases.query({
             database_id: process.env.NOTION_PAGE_ID,
             filter: {
                 property: 'Recipient',
-                text: { equals: user },
+                rich_text: {
+                    equals: user,
+                },
             },
         });
 
@@ -21,9 +21,13 @@ async function readMessages() {
         } else {
             console.log(`Messages (${messages.length}):`);
             messages.forEach((message, index) => {
-                console.log(`${index + 1}: From: ${message.properties.Sender.title[0].text.content}`);
-                console.log(`${message.properties.Message.rich_text[0].text.content}`);
-                console.log(`Sent: ${message.properties.Timestamp.date.start}\n`);
+                const sender = message.properties.Sender?.rich_text?.[0]?.text?.content || 'Unknown Sender';
+                const content = message.properties.Message?.title?.[0]?.text?.content || 'No message content';
+                const timestamp = message.properties.Timestamp?.date?.start || 'No timestamp';
+
+                console.log(`${index + 1}: From: ${sender}`);
+                console.log(content);
+                console.log(`Sent: ${timestamp}\n`);
             });
         }
     } catch (error) {
